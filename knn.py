@@ -56,6 +56,7 @@ class KNN:
             for i_train in range(num_train):
                 dists[i_test][i_train] = np.sum(np.abs(self.train_X[i_train] - X[i_test])) 
                 pass
+        return dists 
 
     def compute_distances_one_loop(self, X):
         '''
@@ -75,6 +76,7 @@ class KNN:
         for i_test in range(num_test):
             dists[i_test] = np.sum(np.abs(self.train_X[:] - X[i_test]), axis=1)
             pass
+        return dists 
 
     def compute_distances_no_loops(self, X):
         '''
@@ -94,6 +96,7 @@ class KNN:
         dists = np.zeros((num_test, num_train), np.float32)
             dists += np.sum(np.abs(self.train_X[:, None] - X[None, :]), axis=2).T
         pass
+        return dists 
 
     def predict_labels_binary(self, dists):
         '''
@@ -110,9 +113,11 @@ class KNN:
         num_test = dists.shape[0]
         pred = np.zeros(num_test, np.bool)
         for i in range(num_test):
+            
             closest_y = self.train_y[np.argsort(dists[i])[0:self.k]]
             (values, counts) = np.unique(closest_y, return_counts=True)
             pred[i] = values[np.argmax(counts)]
+            
             pass
         return pred
 
@@ -132,8 +137,10 @@ class KNN:
         num_test = dists.shape[0]
         pred = np.zeros(num_test, np.int)
         for i in range(num_test):
+            
             closest_y = self.train_y[np.argsort(dists[i])[0:self.k]]
             (values, counts) = np.unique(closest_y, return_counts=True)
             pred[i] = values[np.argmax(counts)]
+            
             pass
         return pred
