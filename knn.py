@@ -94,7 +94,7 @@ class KNN:
         num_test = X.shape[0]
         
         dists = np.zeros((num_test, num_train), np.float32)
-            dists += np.sum(np.abs(self.train_X[:, None] - X[None, :]), axis=2).T
+        dists += np.sum(np.abs(self.train_X[:, None] - X[None, :]), axis=2).T
         pass
         return dists 
 
