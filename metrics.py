@@ -74,4 +74,4 @@ def multiclass_accuracy(prediction, ground_truth):
         accuracy = tp / prediction.shape[0]
     else:
         accuracy = 0
-    return 0
+    return accuracy

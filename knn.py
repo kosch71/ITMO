@@ -112,12 +112,10 @@ class KNN:
         '''
         num_test = dists.shape[0]
         pred = np.zeros(num_test, np.bool)
-        for i in range(num_test):
-            
+        for i in range(num_test):          
             closest_y = self.train_y[np.argsort(dists[i])[0:self.k]]
             (values, counts) = np.unique(closest_y, return_counts=True)
-            pred[i] = values[np.argmax(counts)]
-            
+            pred[i] = values[np.argmax(counts)]          
             pass
         return pred
 
@@ -134,13 +132,11 @@ class KNN:
            for every test sample
         '''
         num_test = dists.shape[0]
-        num_test = dists.shape[0]
+        num_train = dists.shape[1]
         pred = np.zeros(num_test, np.int)
-        for i in range(num_test):
-            
+        for i in range(num_test):           
             closest_y = self.train_y[np.argsort(dists[i])[0:self.k]]
             (values, counts) = np.unique(closest_y, return_counts=True)
-            pred[i] = values[np.argmax(counts)]
-            
+            pred[i] = values[np.argmax(counts)]           
             pass
         return pred
